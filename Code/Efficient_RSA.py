@@ -7,9 +7,12 @@ import sys
 
 
 bits= int(input("Enter no. of bits "))
+"""
 with open ("msgfile.txt", "r") as msgfile:
     msg=msgfile.readlines()
+"""
 
+msg = 'hello'
 #print("Message = " + str(msg) + "\n\n")
 start_key = time.time()
 p = Crypto.Util.number.getPrime(bits, randfunc=Crypto.Random.get_random_bytes)
@@ -32,12 +35,13 @@ d = (gmpy2.invert(e, PHI))
 end_key = time.time() 
 #print("d = "+str(d)+"\n\n")
 print("Key Generation in microseconds : " + str((end_key - start_key)*1000))
-"""
+
 start_enc = time.time()
 cry = []
-for i in msg:
-    cr = pow(ord(i),e,n)
-    cry.append(cr)
+for temp in msg:
+    for i in temp:
+        cr = pow(ord(i),e,n)
+        cry.append(cr)
 end_enc = time.time()
 #print("cipher text: ",cry)
 print("Encryption in microseconds : " + str((end_enc - start_enc)*1000))
@@ -47,7 +51,6 @@ pl=""
 for i in cry:
     pn = pow(i,d,n)
     pl += chr(pn)
-#print("plain text: ",pl)
+print("plain text: ",pl)
 end_dec = time.time()
-print("Encryption in microseconds : " + str((end_dec - start_dec)*1000))
-"""
+print("Decryption in microseconds : " + str((end_dec - start_dec)*1000))

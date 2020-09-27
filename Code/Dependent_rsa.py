@@ -41,12 +41,13 @@ Depen_Key = pow(Depen,e,n)
 end_key = time.time() 
 #print("d = "+str(d)+"\n\n")
 print("Key Generation in microseconds : " + str((end_key - start_key)*1000))
-"""
+
 start_enc = time.time()
 cry = []
-for i in msg:
-    cr = ord(i)*pow(Depen+1,e,n)
-    cry.append(cr)
+for temp in msg:
+    for i in temp:
+        cr = ord(i)*pow(Depen+1,e,n)
+        cry.append(cr)
 end_enc = time.time()
 #print("cipher text: ",cry)
 print("Encryption in microseconds : " + str((end_enc - start_enc)*1000))
@@ -57,8 +58,7 @@ for i in cry:
     Depen=pow(Depen_Key,d,n)
     pn = i // pow(Depen+1,e,n)
     pl += chr(pn)
-#print("plain text: ",pl)
+print("plain text: ",pl)
 end_dec = time.time()
-#print(pl)
-print("Encryption in microseconds : " + str((end_dec - start_dec)*1000))
-"""
+
+print("Decryption in microseconds : " + str((end_dec - start_dec)*1000))

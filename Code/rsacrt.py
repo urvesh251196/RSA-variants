@@ -41,12 +41,13 @@ qinv = (gmpy2.invert(q,p))
 end_pkey = time.process_time()
 
 print("Key Generation time in microseconds : " + str((end_pkey-start_pkey)*1000))
-"""
+
 start_enc = time.time()
 cry = []
-for i in msg:
-    cr = pow(ord(i),e,n)
-    cry.append(cr)
+for temp in msg:
+    for i in temp:
+        cr = pow(ord(i),e,n)
+        cry.append(cr)
     
 end_enc = time.time()
 #print("cipher text: ",cry)
@@ -60,6 +61,5 @@ for i in cry:
     h = (qinv*(pn1-pn2))%p
     pl += chr(pn2 + h*q)
 end_dec = time.time()
-#print("plain text : ",pl)
+print("plain text : ",pl)
 print("Decryption time in microseconds : " + str((end_dec-start_dec)*1000))
-"""

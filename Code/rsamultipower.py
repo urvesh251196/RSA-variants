@@ -45,9 +45,10 @@ print("Private Key Generation time in milliseconds : " + str((end_key - start_ke
 
 start_enc = time.time()
 cry = []
-for i in msg:
-    cr = pow(ord(i),e,n)
-    cry.append(cr)
+for temp in msg:
+    for i in temp:
+        cr = pow(ord(i),e,n)
+        cry.append(cr)
 #print("cipher text: ",cry)
 end_enc = time.time()
 print("Encryption Time in milliseconds: " + str((end_enc-start_enc)*1000))
@@ -58,7 +59,7 @@ pl=""
 for i in cry:
     pn = pow(i,d, n)
     pl += chr(pn)
-#print("plain text: ",pl)
+print("plain text: ",pl)
 end = time.time()
 end_dec = time.time()
 print("Decryption Time : " + str((end_dec-start_dec)*1000))
